@@ -18,5 +18,9 @@
     "net45": {
 
     }
+  },
+  "dependencies": {
+    "NHibernate": "4.0.0.4000",
+    "SimplePersistence.UoW": "3.0.0"
   }
 }
