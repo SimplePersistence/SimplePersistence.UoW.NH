@@ -83,4 +83,15 @@ public class LoggingWorkArea : NHWorkArea<LogisticsContext>, ILoggingWorkArea
 
 	public ILogRepository Logs { get; }
 } 
+
+public class AppUnitOfWork : NHUnitOfWork, IAppUnitOfWork
+{
+	public AppUnitOfWork(ISession session) 
+		: base(session)
+	{
+		Logging = new LoggingWorkArea(session);
+	}
+	
+	public ILoggingWorkArea Logging { get; }
+}
 ```
