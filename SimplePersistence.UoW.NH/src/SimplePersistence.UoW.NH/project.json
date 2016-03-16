@@ -1,0 +1,22 @@
+﻿{
+  "version": "3.0.0-alpha01",
+  "title": "SimplePersistence.UoW.NH",
+  "description": "SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW using NHibernate 4 as the ORM.",
+  "authors": [ "João Simões" ],
+  "tags": [ "unit of work", "uow", "persistence", "pattern", "NHibernate 4", "NH4" ],
+  "projectUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.NH",
+  "licenseUrl": "https://github.com/SimplePersistence/SimplePersistence.UoW.NH/blob/master/LICENSE",
+  "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
+  "language": "en-US",
+  "copyright": "Copyright © 2016 SimplePersistence",
+  "releaseNotes": "",
+
+  "frameworks": {
+    "net40": {
+
+    },
+    "net45": {
+
+    }
+  }
+}
