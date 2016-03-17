@@ -32,6 +32,12 @@ namespace SimplePersistence.UoW.NH
     using NHibernate;
     using NHibernate.Linq;
 
+    /// <summary>
+    /// Implementation of an <see cref="IQueryableRepository{TEntity,TId}"/> for the NHibernate
+    /// exposing both sync and async operations. It also exposes an <see cref="IQueryable{TEntity}"/>.
+    /// </summary>
+    /// <typeparam name="TEntity">The entity type</typeparam>
+    /// <typeparam name="TKey">The entity id type</typeparam>
     public abstract class NHQueryableRepository<TEntity, TKey> : INHRepository<TEntity, TKey>
         where TEntity : class
     {
@@ -58,11 +64,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<TEntity> GetByIdAsync(TKey id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return GetByIdAsync(id, CancellationToken.None);
         }
 #else
         public async Task<TEntity> GetByIdAsync(TKey id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return await GetByIdAsync(id, CancellationToken.None);
         }
 #endif
@@ -77,11 +85,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<TEntity> GetByIdAsync(TKey id, CancellationToken ct)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return Task.Factory.StartNew(() => GetById(id), ct);
         }
 #else
         public async Task<TEntity> GetByIdAsync(TKey id, CancellationToken ct)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return await Task.Run(() => GetById(id), ct);
         }
 #endif
@@ -96,11 +106,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<TEntity> AddAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return Task.Factory.StartNew(() => Add(entity), ct);
         }
 #else
         public async Task<TEntity> AddAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return await Task.Run(() => Add(entity), ct);
         }
 #endif
@@ -115,11 +127,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> AddAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return AddAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #else
         public async Task<IEnumerable<TEntity>> AddAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await AddAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #endif
@@ -134,11 +148,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> AddAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return AddAsync(CancellationToken.None, entities);
         }
 #else
         public async Task<IEnumerable<TEntity>> AddAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await AddAsync(CancellationToken.None, entities);
         }
 #endif
@@ -153,11 +169,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> AddAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return Task.Factory.StartNew(() => Add(entities), ct);
         }
 #else
         public async Task<IEnumerable<TEntity>> AddAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await Task.Run(() => Add(entities), ct);
         }
 #endif
@@ -172,11 +190,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<TEntity> UpdateAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return Task.Factory.StartNew(() => Update(entity), ct);
         }
 #else
         public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return await Task.Run(() => Update(entity), ct);
         }
 #endif
@@ -191,11 +211,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> UpdateAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return UpdateAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #else
         public async Task<IEnumerable<TEntity>> UpdateAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await UpdateAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #endif
@@ -210,11 +232,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> UpdateAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return UpdateAsync(CancellationToken.None, entities);
         }
 #else
         public async Task<IEnumerable<TEntity>> UpdateAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await UpdateAsync(CancellationToken.None, entities);
         }
 #endif
@@ -229,11 +253,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> UpdateAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return Task.Factory.StartNew(() => Update(entities), ct);
         }
 #else
         public async Task<IEnumerable<TEntity>> UpdateAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await Task.Run(() => Update(entities), ct);
         }
 #endif
@@ -248,11 +274,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<TEntity> DeleteAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return Task.Factory.StartNew(() => Delete(entity), ct);
         }
 #else
         public async Task<TEntity> DeleteAsync(TEntity entity, CancellationToken ct = new CancellationToken())
         {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
             return await Task.Run(() => Delete(entity), ct);
         }
 #endif
@@ -267,11 +295,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> DeleteAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return DeleteAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #else
         public async Task<IEnumerable<TEntity>> DeleteAsync(IEnumerable<TEntity> entities, CancellationToken ct = new CancellationToken())
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await DeleteAsync(ct, entities as TEntity[] ?? entities.ToArray());
         }
 #endif
@@ -286,11 +316,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> DeleteAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return DeleteAsync(CancellationToken.None, entities);
         }
 #else
         public async Task<IEnumerable<TEntity>> DeleteAsync(params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await DeleteAsync(CancellationToken.None, entities);
         }
 #endif
@@ -305,11 +337,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<IEnumerable<TEntity>> DeleteAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return Task.Factory.StartNew(() => Delete(entities), ct);
         }
 #else
         public async Task<IEnumerable<TEntity>> DeleteAsync(CancellationToken ct, params TEntity[] entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return await Task.Run(() => Delete(entities), ct);
         }
 #endif
@@ -343,11 +377,13 @@ namespace SimplePersistence.UoW.NH
 #if NET40
         public Task<bool> ExistsAsync(TKey id, CancellationToken ct = new CancellationToken())
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return Task.Factory.StartNew(() => Exists(id), ct);
         }
 #else
         public async Task<bool> ExistsAsync(TKey id, CancellationToken ct = new CancellationToken())
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return await Task.Run(() => Exists(id), ct);
         }
 #endif
@@ -365,6 +401,7 @@ namespace SimplePersistence.UoW.NH
         /// </returns>
         public TEntity GetById(TKey id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return Session.Get<TEntity>(id);
         }
 
@@ -391,6 +428,7 @@ namespace SimplePersistence.UoW.NH
         /// </returns>
         public IEnumerable<TEntity> Add(IEnumerable<TEntity> entities)
         {
+            if (entities == null) throw new ArgumentNullException(nameof(entities));
             return Add(entities as TEntity[] ?? entities.ToArray());
         }
 
@@ -525,6 +563,7 @@ namespace SimplePersistence.UoW.NH
         /// </returns>
         public bool Exists(TKey id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
             return QueryById(id).Any();
         }
 
