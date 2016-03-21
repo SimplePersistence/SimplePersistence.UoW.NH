@@ -63,7 +63,7 @@ public class LogRepository : NHQueryableRepository<Log, long>, ILogRepository
 	
 	public async Task<IEnumerable<Log>> GetAllCreatedAfterAsync(DateTimeOffset on, CancellationToken ct)
 	{
-		return await Query().Where(e => e.CreatedOn >= on).ToArrayAsync(ct);
+		return await Task.Run(() => Query().Where(e => e.CreatedOn >= on).ToArray());
 	}
 }
 
