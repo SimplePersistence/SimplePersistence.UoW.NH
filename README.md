@@ -67,7 +67,7 @@ public class LogRepository : NHQueryableRepository<Log, long>, ILogRepository
 	}
 }
 
-public class LoggingWorkArea : NHWorkArea<LogisticsContext>, ILoggingWorkArea
+public class LoggingWorkArea : NHWorkArea, ILoggingWorkArea
 {
 	public LoggingWorkArea(ISession session)
 		: base(session)
