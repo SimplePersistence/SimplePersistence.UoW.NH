@@ -1,5 +1,5 @@
 ﻿{
-  "version": "3.0.0",
+  "version": "3.2.0",
   "title": "SimplePersistence.UoW.NH",
   "description": "SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW using NHibernate 4 as the ORM.",
   "authors": [ "João Simões" ],
@@ -9,7 +9,7 @@
   "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
   "language": "en-US",
   "copyright": "Copyright © 2016 SimplePersistence",
-  "releaseNotes": "Implemented the new SimplePersistence.UoW interfaces",
+  "releaseNotes": "Implemented the new logical area interface",
 
   "frameworks": {
     "net40": {
