@@ -21,24 +21,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 #endregion
+namespace SimplePersistence.UoW.NH
+{
+    using System.Linq;
+    using NHibernate;
 
-using System;
-using System.Reflection;
-using System.Runtime.InteropServices;
+    /// <summary>
+    /// Represents an area used to aggregate Unit of Work logic, 
+    /// like data transformations or procedures, specialized for NHibernate.
+    /// </summary>
+    public interface INHLogicalArea : ILogicalArea
+    {
+        /// <summary>
+        /// The database session object
+        /// </summary>
+        ISession Session { get; }
 
-[assembly: AssemblyTitle("SimplePersistence.UoW.NH")]
-[assembly: AssemblyDescription("SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW using NHibernate 4 as the ORM.")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Net.JoaoSimoes")]
-[assembly: AssemblyProduct("SimplePersistence")]
-[assembly: AssemblyCopyright("Copyright © 2016 SimplePersistence")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-
-[assembly: ComVisible(false)]
-[assembly: Guid("a484d879-38e0-481d-b547-316dbf1987c6")]
-
-[assembly: CLSCompliant(true)]
-
-[assembly: AssemblyVersion("3.2.1")]
-[assembly: AssemblyInformationalVersion("3.2.1")]
+        /// <summary>
+        /// Prepares an <see cref="IQueryable{T}"/> for the specified entity type.
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type</typeparam>
+        /// <returns>The <see cref="IQueryable{T}"/> for the specified entity type.</returns>
+        IQueryable<TEntity> Query<TEntity>() where TEntity : class;
+    }
+}
