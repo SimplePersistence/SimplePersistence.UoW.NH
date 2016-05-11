@@ -2,11 +2,18 @@
 SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW using NHibernate 4 as the ORM.
 
 ## Installation
-This library can be installed via NuGet package. Just run the following command:
+This library can be installed via [NuGet](https://www.nuget.org/packages/SimplePersistence.UoW.NH/) package. Just run the following command:
 
 ```powershell
 Install-Package SimplePersistence.UoW.NH -Pre
 ```
+
+## Compatibility
+
+This library is compatible with the folowing frameworks:
+
+* .NET Framework 4.0
+* .NET Framework 4.5
 
 ## Usage
 
