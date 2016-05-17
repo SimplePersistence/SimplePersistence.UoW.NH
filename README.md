@@ -5,7 +5,7 @@ SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW usi
 This library can be installed via [NuGet](https://www.nuget.org/packages/SimplePersistence.UoW.NH/) package. Just run the following command:
 
 ```powershell
-Install-Package SimplePersistence.UoW.NH -Pre
+Install-Package SimplePersistence.UoW.NH
 ```
 
 ## Compatibility
