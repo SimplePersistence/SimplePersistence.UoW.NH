@@ -10,7 +10,10 @@
   "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
   "language": "en-US",
   "copyright": "Copyright © 2016 SimplePersistence",
-  "releaseNotes": "Missing Query<TEntity>() method in INHLogicalArea",
+  "releaseNotes": "Library is now strong signed",
+  "compilationOptions": {
+    "keyFile": "SimplePersistence.snk"
+  },
 
   "frameworks": {
     "net40": { },
@@ -18,6 +21,6 @@
   },
   "dependencies": {
     "NHibernate": "4.0.0.4000",
-    "SimplePersistence.UoW": "3.2.0"
+    "SimplePersistence.UoW": "3.2.1"
   }
 }
