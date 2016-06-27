@@ -1,5 +1,5 @@
 ﻿{
-  "version": "3.2.2",
+  "version": "3.3.0",
   "title": "SimplePersistence.UoW.NH",
   "summary": "SimplePersistence.UoW implementation for NHibernate 4",
   "description": "SimplePersistence.UoW.NH offers implementations to the SimplePersistence.UoW using NHibernate 4 as the ORM.",
