@@ -10,7 +10,7 @@
   "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
   "language": "en-US",
   "copyright": "Copyright © 2016 SimplePersistence",
-  "releaseNotes": "Added the new interface IDatabaseSession that can be used as an ISession wrapper",
+  "releaseNotes": "Added the new interface IDatabaseSession that can be used as an ISession wrapper\nAdded some Obsolete attributes",
   "compilationOptions": {
     "keyFile": "SimplePersistence.snk"
   },

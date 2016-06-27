@@ -53,6 +53,7 @@ namespace SimplePersistence.UoW.NH
         /// </summary>
         /// <param name="sessionFactory">The session factory</param>
         /// <exception cref="ArgumentNullException"></exception>
+        [Obsolete("To be removed on next major version. Use the constructor receiving an ISession as a parameter.")]
         protected NHUnitOfWork(ISessionFactory sessionFactory)
         {
             if (sessionFactory == null) throw new ArgumentNullException(nameof(sessionFactory));
