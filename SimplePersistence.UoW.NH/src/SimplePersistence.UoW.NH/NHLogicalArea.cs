@@ -23,6 +23,7 @@
 #endregion
 namespace SimplePersistence.UoW.NH
 {
+    using System;
     using System.Linq;
     using NHibernate;
     using NHibernate.Linq;
@@ -55,10 +56,26 @@ namespace SimplePersistence.UoW.NH
         /// <summary>
         /// Creates a new logical area that will use the given database session
         /// </summary>
-        /// <param name="session"></param>
+        /// <param name="session">The database session object</param>
+        /// <exception cref="ArgumentNullException"></exception>
         protected NHLogicalArea(ISession session)
         {
+            if (session == null) throw new ArgumentNullException(nameof(session));
+
             Session = session;
+        }
+
+        /// <summary>
+        /// Creates a new logical area that will use the given database session wrapper
+        /// </summary>
+        /// <param name="databaseSession">The database session wrapper</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected NHLogicalArea(IDatabaseSession databaseSession)
+        {
+            if (databaseSession == null)
+                throw new ArgumentNullException(nameof(databaseSession));
+
+            Session = databaseSession.Session;
         }
     }
 }

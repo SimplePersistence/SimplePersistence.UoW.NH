@@ -53,6 +53,7 @@ namespace SimplePersistence.UoW.NH
         /// </summary>
         /// <param name="sessionFactory">The session factory</param>
         /// <exception cref="ArgumentNullException"></exception>
+        [Obsolete("To be removed on next major version. Use the constructor receiving an ISession as a parameter.")]
         protected NHUnitOfWork(ISessionFactory sessionFactory)
         {
             if (sessionFactory == null) throw new ArgumentNullException(nameof(sessionFactory));
@@ -68,6 +69,18 @@ namespace SimplePersistence.UoW.NH
         {
             if (session == null) throw new ArgumentNullException(nameof(session));
             _session = session;
+        }
+
+        /// <summary>
+        /// Creates a new unit of work that will use the given <see cref="IDatabaseSession.Session"/>
+        /// as the <see cref="ISession"/> object.
+        /// </summary>
+        /// <param name="databaseSession">The database session wrapper</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected NHUnitOfWork(IDatabaseSession databaseSession)
+        {
+            if (databaseSession == null) throw new ArgumentNullException(nameof(databaseSession));
+            _session = databaseSession.Session;
         }
 
         /// <summary>
