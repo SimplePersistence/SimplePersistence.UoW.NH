@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // The MIT License (MIT)
 // 
 // Copyright (c) 2016 SimplePersistence
@@ -27,40 +27,56 @@ namespace SimplePersistence.UoW.NH
     using NHibernate;
 
     /// <summary>
-    /// Represents a work area that can be used for aggregating
-    /// UoW properties, specialized for the NHibernate
+    /// Represents a database session. Mainly used to wrap an <see cref="ISession"/> 
+    /// when using multiple database sources
     /// </summary>
-    public abstract class NHWorkArea : INHWorkArea
+    public abstract class DatabaseSession : IDatabaseSession, IDisposable
     {
-        #region Implementation of INHWorkArea
-
         /// <summary>
-        /// The database session object
+        /// Creates a new instance
         /// </summary>
-        public ISession Session { get; }
-
-        #endregion
-
-        /// <summary>
-        /// Creates a new work area that will use the given database session
-        /// </summary>
-        /// <param name="session">The database session</param>
+        /// <param name="session">The database session object</param>
         /// <exception cref="ArgumentNullException"></exception>
-        protected NHWorkArea(ISession session)
+        protected DatabaseSession(ISession session)
         {
             if (session == null) throw new ArgumentNullException(nameof(session));
+
             Session = session;
         }
 
         /// <summary>
-        /// Creates a new work area that will use the given database session wrapper
+        /// Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
         /// </summary>
-        /// <param name="databaseSession">The database session wrapper</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        protected NHWorkArea(IDatabaseSession databaseSession)
+        ~DatabaseSession()
         {
-            if (databaseSession == null) throw new ArgumentNullException(nameof(databaseSession));
-            Session = databaseSession.Session;
+            Dispose(false);
         }
+
+        #region Implementation of IDatabaseSession
+
+        /// <summary>
+        /// The database session object
+        /// </summary>
+        public ISession Session { get; private set; }
+
+        #endregion
+
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+
+            Session.Dispose();
+            Session = null;
+        }
+
+        #endregion
     }
 }

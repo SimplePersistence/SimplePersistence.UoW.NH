@@ -64,5 +64,18 @@ namespace SimplePersistence.UoW.NH
 
             Session = session;
         }
+
+        /// <summary>
+        /// Creates a new logical area that will use the given database session wrapper
+        /// </summary>
+        /// <param name="databaseSession">The database session wrapper</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected NHLogicalArea(IDatabaseSession databaseSession)
+        {
+            if (databaseSession == null)
+                throw new ArgumentNullException(nameof(databaseSession));
+
+            Session = databaseSession.Session;
+        }
     }
 }

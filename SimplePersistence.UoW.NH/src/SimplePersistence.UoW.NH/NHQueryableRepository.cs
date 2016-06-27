@@ -52,6 +52,17 @@ namespace SimplePersistence.UoW.NH
             Session = session;
         }
 
+        /// <summary>
+        /// Creates a new repository
+        /// </summary>
+        /// <param name="databaseSession">The database session wrapper</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected NHQueryableRepository(IDatabaseSession databaseSession)
+        {
+            if (databaseSession == null) throw new ArgumentNullException(nameof(databaseSession));
+            Session = databaseSession.Session;
+        }
+
         #region Implementation of IAsyncRepository<TEntity,in TKey>
 
         /// <summary>

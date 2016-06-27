@@ -10,7 +10,7 @@
   "iconUrl": "https://avatars3.githubusercontent.com/u/17026510",
   "language": "en-US",
   "copyright": "Copyright © 2016 SimplePersistence",
-  "releaseNotes": "Library is now strong signed",
+  "releaseNotes": "Added the new interface IDatabaseSession that can be used as an ISession wrapper",
   "compilationOptions": {
     "keyFile": "SimplePersistence.snk"
   },

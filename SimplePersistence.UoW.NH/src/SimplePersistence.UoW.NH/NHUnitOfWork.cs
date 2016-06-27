@@ -71,6 +71,18 @@ namespace SimplePersistence.UoW.NH
         }
 
         /// <summary>
+        /// Creates a new unit of work that will use the given <see cref="IDatabaseSession.Session"/>
+        /// as the <see cref="ISession"/> object.
+        /// </summary>
+        /// <param name="databaseSession">The database session wrapper</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        protected NHUnitOfWork(IDatabaseSession databaseSession)
+        {
+            if (databaseSession == null) throw new ArgumentNullException(nameof(databaseSession));
+            _session = databaseSession.Session;
+        }
+
+        /// <summary>
         /// Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.
         /// </summary>
         ~NHUnitOfWork()
